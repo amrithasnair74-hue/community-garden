@@ -1,7 +1,9 @@
 import 'package:communitygarden/colour/colour.dart';
 import 'package:communitygarden/image/image.dart';
+import 'package:communitygarden/screens/detailedpage/detailedpage.dart';
 import 'package:communitygarden/screens/notification/notificationpage.dart';
 import 'package:communitygarden/screens/registrationpage/gardenfirst.dart';
+import 'package:communitygarden/screens/splashscreen/gardensplash.dart';
 import 'package:flutter/material.dart';
 
 class GardenHomePage extends StatelessWidget {
@@ -10,32 +12,32 @@ class GardenHomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor:Appcolor.backgroundcolor,
+      backgroundColor: Appcolor.backgroundcolor,
 
       appBar: AppBar(
-        backgroundColor:Appcolor.appcolor,
+        backgroundColor: Appcolor.appcolor,
         leading: IconButton(
           icon: const Icon(Icons.arrow_back, color: Colors.black),
-          onPressed: () => Navigator.pop(context,MaterialPageRoute(builder:(context)=>Gardenfirst())),
+          onPressed: () => Navigator.pop(
+            context,
+            MaterialPageRoute(builder: (context) => Gardenfirst()),
+          ),
         ),
         title: const Text(
           "EcoBloom",
           style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
         ),
 
-        
         actions: [
           IconButton(
             icon: const Icon(Icons.notifications, color: Colors.black),
             onPressed: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) =>PlantStockPage()),
+                MaterialPageRoute(builder: (context) => PlantStockPage()),
               );
             },
           ),
-
-        
 
           const SizedBox(width: 10),
         ],
@@ -47,7 +49,6 @@ class GardenHomePage extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-
               const SizedBox(height: 10),
 
               Center(
@@ -68,7 +69,7 @@ class GardenHomePage extends StatelessWidget {
               const SizedBox(height: 8),
 
               const Text(
-                "Small seed, Big Community.",
+                "Small Seed, Big Community.",
                 style: TextStyle(fontSize: 16, color: Colors.grey),
               ),
 
@@ -97,11 +98,12 @@ class GardenHomePage extends StatelessWidget {
               ),
 
               const SizedBox(height: 15),
+              
 
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  buildCategory("Indoor", Icons.home),
+                  buildCategory("Indoor",Icons.home),
                   buildCategory("Outdoor", Icons.park),
                   buildCategory("Herbs", Icons.eco),
                   buildCategory("Flowers", Icons.local_florist),
@@ -115,7 +117,9 @@ class GardenHomePage extends StatelessWidget {
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Appcolor.appcolor,
                     padding: const EdgeInsets.symmetric(
-                        horizontal: 40, vertical: 14),
+                      horizontal: 40,
+                      vertical: 14,
+                    ),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(14),
                     ),
@@ -123,7 +127,7 @@ class GardenHomePage extends StatelessWidget {
                   onPressed: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (_) => const Gardenfirst()),
+                      MaterialPageRoute(builder: (_) => const DetailPage ()),
                     );
                   },
                   child: const Text(
@@ -151,7 +155,7 @@ Widget buildCategory(String title, IconData icon) {
           color: Appcolor.lightcolor,
           borderRadius: BorderRadius.circular(12),
         ),
-        child: Icon(icon, size: 30, color:Appcolor.appcolor),
+        child: Icon(icon, size: 30, color: Appcolor.appcolor),
       ),
       const SizedBox(height: 6),
       Text(
@@ -161,11 +165,3 @@ Widget buildCategory(String title, IconData icon) {
     ],
   );
 }
-
-
-
-
-
-
-
-

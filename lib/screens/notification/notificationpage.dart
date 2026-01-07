@@ -10,7 +10,8 @@ class PlantStockPage extends StatelessWidget {
       backgroundColor: Appcolor.backgroundcolor,
       appBar: AppBar(
         backgroundColor: Appcolor.appcolor,
-        title: const Text("Notification",
+        title: const Text(
+          "Notification",
           style: TextStyle(color: Colors.black, fontSize: 22),
         ),
       ),
@@ -37,7 +38,8 @@ class PlantStockPage extends StatelessWidget {
                 plantCard(
                   name: "Red Rose",
                   offer: "Special discount",
-                  icon: Icons.local_florist),
+                  icon: Icons.local_florist,
+                ),
                 plantCard(
                   name: "Boganvilla",
                   offer: "Limited Stock",

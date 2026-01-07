@@ -9,4 +9,7 @@ class AppImages{
   static final waterimage='assets/water.jpg';
   static final roseimage='assets/rose.jpg';
   static final shrubimage='assets/shrubs.jpg';
+  static final glasshouse='assets/glasshouse.jpg';
+  static final redrose='assets/red.jpg';
+  
 }

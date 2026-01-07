@@ -3,7 +3,6 @@ import 'package:communitygarden/image/image.dart';
 import 'package:communitygarden/screens/homepage/homepage.dart';
 import 'package:flutter/material.dart';
 
-
 class Gardenregister extends StatefulWidget {
   const Gardenregister({super.key});
 
@@ -21,9 +20,9 @@ class _GardenregisterState extends State<Gardenregister> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(backgroundColor: Colors.green,title: Text('EcoBloom')),
-backgroundColor:Colors.white,
-      body: SingleChildScrollView(   
+      appBar: AppBar(backgroundColor: Colors.green, title: Text('EcoBloom')),
+      backgroundColor: Colors.white,
+      body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(16.0),
 
@@ -32,54 +31,59 @@ backgroundColor:Colors.white,
               Center(
                 child: Text(
                   'Login',
-                  style: TextStyle(
-                    fontSize: 25,
-                    fontWeight: FontWeight.bold,
-                  ),
+                  style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
                 ),
               ),
               SizedBox(height: 10),
 
-              Image.asset(AppImages.thirdimage,height: 150,
-              ),
+              Image.asset(AppImages.thirdimage, height: 150),
 
               SizedBox(height: 20),
-              Customwidgets(hintText: "Name", controller:usernamecontroller,validator: (value) {
+              Customwidgets(
+                hintText: "Name",
+                controller: usernamecontroller,
+                validator: (value) {
                   if (value == null || value.isEmpty) {
                     return "please enter name";
                   }
                   return null;
                 },
-                ),
-            
-            
+              ),
+
               SizedBox(height: 10),
-              Customwidgets(hintText: "Password", controller:passwordcontroller,
-             
+              Customwidgets(
+                hintText: "Password",
+                controller: passwordcontroller,
+
                 validator: (value) {
                   if (value == null || value.isEmpty) {
                     return "please enter Password";
                   }
                   if (!RegExp(
-                          r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,}$')
-                      .hasMatch(value)) {
+                    r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,}$',
+                  ).hasMatch(value)) {
                     return "enter correct password";
                   }
                   return null;
                 },
-                ),
-              
+              ),
+
               SizedBox(height: 10),
 
-             Customwidgets(hintText:"Confirm password" , controller: passwordcontroller),
+              Customwidgets(
+                hintText: "Confirm password",
+                controller: passwordcontroller,
+              ),
               SizedBox(height: 20),
 
               OutlinedButton(
                 onPressed: () {
                   Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => const GardenHomePage()),
-                    );
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const GardenHomePage(),
+                    ),
+                  );
                 },
                 style: OutlinedButton.styleFrom(
                   shape: RoundedRectangleBorder(
@@ -94,9 +98,10 @@ backgroundColor:Colors.white,
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   TextButton(
-                      onPressed: () {}, child: Text("forgot password ?")),
-                  TextButton(
-                      onPressed: () {}, child: Text("Create Account")),
+                    onPressed: () {},
+                    child: Text("forgot password ?"),
+                  ),
+                  TextButton(onPressed: () {}, child: Text("Create Account")),
                 ],
               ),
             ],

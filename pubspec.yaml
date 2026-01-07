@@ -61,8 +61,13 @@ flutter:
   assets:
       - assets/splash_image.png 
       - assets/gardener.jpg
-      
-
+      - assets/boganvilla.jpg
+      - assets/rose.jpg
+      - assets/shrubs.jpg
+      - assets/water.jpg
+      - assets/red.jpg
+      - assets/glasshouse.jpg
+      - assets/anthurium.jpg
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

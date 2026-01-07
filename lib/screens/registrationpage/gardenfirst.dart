@@ -20,7 +20,7 @@ class _GardenfirstState extends State<Gardenfirst> {
         title: const Text("EcoBloom"),
         centerTitle: true,
       ),
-      backgroundColor:Appcolor.backgroundcolor,
+      backgroundColor: Appcolor.backgroundcolor,
       body: SingleChildScrollView(
         child: Center(
           child: Column(
@@ -42,12 +42,12 @@ class _GardenfirstState extends State<Gardenfirst> {
                     );
                   },
                   style: ElevatedButton.styleFrom(
-                    backgroundColor:Appcolor.backcolor,
+                    backgroundColor: Appcolor.backcolor,
                     padding: const EdgeInsets.all(15),
                   ),
                   child: const Text(
                     "Login",
-                    style: TextStyle(fontSize: 18,color:Colors.green),
+                    style: TextStyle(fontSize: 18, color: Colors.green),
                   ),
                 ),
               ),
@@ -79,7 +79,7 @@ class _GardenfirstState extends State<Gardenfirst> {
                     );
                   },
                   style: ElevatedButton.styleFrom(
-                    backgroundColor:Appcolor.backcolor,
+                    backgroundColor: Appcolor.backcolor,
                     padding: const EdgeInsets.all(15),
                   ),
                   child: const Text(
