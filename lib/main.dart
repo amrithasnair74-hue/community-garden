@@ -7,6 +7,8 @@ import 'package:communitygarden/screens/internalpage/internalpage.dart';
 import 'package:communitygarden/screens/notification/notificationpage.dart';
 import 'package:communitygarden/screens/payementpage.dart';
 import 'package:communitygarden/screens/splashscreen/gardensplash.dart';
+import 'package:communitygarden/settings/settingspage.dart';
+import 'package:communitygarden/wishpage/wishpage.dart';
 import 'package:flutter/material.dart';
 
 void main(){
@@ -27,10 +29,10 @@ class communitygarden extends StatefulWidget {
   const communitygarden({super.key});
 
   @override
-  State<communitygarden> createState() => _communitygardenState();
+  State<communitygarden> createState() => communitygardenState();
 }
 
-class _communitygardenState extends State<communitygarden> {
+class communitygardenState extends State<communitygarden> {
   @override
   Widget build(BuildContext context) {
     return const Placeholder();

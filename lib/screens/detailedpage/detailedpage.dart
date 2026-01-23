@@ -5,6 +5,8 @@ import 'package:communitygarden/screens/aboutpage/aboutrose.dart';
 import 'package:communitygarden/screens/aboutpage/aboutshrub.dart';
 import 'package:communitygarden/screens/homepage/homepage.dart';
 import 'package:communitygarden/screens/notification/notificationpage.dart';
+import 'package:communitygarden/settings/settingspage.dart';
+import 'package:communitygarden/wishpage/wishpage.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -129,7 +131,7 @@ class DetailPage extends StatelessWidget {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (_) => const ShrubPage()),
+                        builder: (_) => const ProfilePage()),
                   );
                 },
               ),
@@ -139,7 +141,7 @@ class DetailPage extends StatelessWidget {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (_) => const RosePage()),
+                        builder: (_) => const WishlistPage()),
                   );
                 },
               ),
