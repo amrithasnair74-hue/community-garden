@@ -2,26 +2,18 @@ import 'package:communitygarden/image/image.dart';
 import 'package:communitygarden/payementpage/payementrose.dart';
 import 'package:flutter/material.dart';
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class Aboutpinkrose extends StatefulWidget {
+  const Aboutpinkrose({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-     debugShowCheckedModeBanner: false,
-      home: const RosePage (),
-    );
-  
-  }
+  State<Aboutpinkrose> createState() => _AboutpinkroseState();
 }
 
-class RosePage extends StatelessWidget {
-  const RosePage({super.key});
-
+class _AboutpinkroseState extends State<Aboutpinkrose> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey.shade200,
+       backgroundColor: Colors.grey.shade200,
       body: SafeArea(
         child: Center(
           child: Container(

@@ -98,12 +98,11 @@ class GardenHomePage extends StatelessWidget {
               ),
 
               const SizedBox(height: 15),
-              
 
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  buildCategory("Indoor",Icons.home),
+                  buildCategory("Indoor", Icons.home),
                   buildCategory("Outdoor", Icons.park),
                   buildCategory("Herbs", Icons.eco),
                   buildCategory("Flowers", Icons.local_florist),
@@ -127,7 +126,7 @@ class GardenHomePage extends StatelessWidget {
                   onPressed: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (_) => const DetailPage ()),
+                      MaterialPageRoute(builder: (_) => const DetailPage()),
                     );
                   },
                   child: const Text(
@@ -165,3 +164,4 @@ Widget buildCategory(String title, IconData icon) {
     ],
   );
 }
+ 

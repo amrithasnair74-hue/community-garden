@@ -1,4 +1,5 @@
 import 'package:communitygarden/image/image.dart';
+import 'package:communitygarden/screens/payementpage.dart';
 import 'package:flutter/material.dart';
 
 class MyApp extends StatelessWidget {
@@ -74,7 +75,7 @@ class ShrubPage extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         const Text(
-                          "\$ 65.00",
+                          "2500 Rs",
                           style: TextStyle(
                             fontSize: 25,
                             fontWeight: FontWeight.bold,
@@ -92,7 +93,12 @@ class ShrubPage extends StatelessWidget {
                               vertical: 12,
                             ),
                           ),
-                          onPressed: () {},
+                          onPressed: () {
+                            Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (_) => const Payementpage()),
+                    );},
+                        
                           child: const Text(
                             "Paynow",
                             style: TextStyle(fontSize: 18,color:Colors.white),

@@ -5,6 +5,7 @@ import 'package:communitygarden/screens/detailedpage/detailedpage.dart';
 import 'package:communitygarden/screens/homepage/homepage.dart';
 import 'package:communitygarden/screens/internalpage/internalpage.dart';
 import 'package:communitygarden/screens/notification/notificationpage.dart';
+import 'package:communitygarden/screens/payementpage.dart';
 import 'package:communitygarden/screens/splashscreen/gardensplash.dart';
 import 'package:flutter/material.dart';
 
@@ -16,7 +17,7 @@ class MyWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
       debugShowCheckedModeBanner:false,
       home:Gardensplash() ,
     );
