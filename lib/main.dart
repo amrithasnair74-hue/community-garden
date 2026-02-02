@@ -1,3 +1,4 @@
+
 import 'package:communitygarden/screens/aboutpage/aboutpage.dart';
 import 'package:communitygarden/screens/aboutpage/aboutrose.dart';
 import 'package:communitygarden/screens/aboutpage/aboutshrub.dart';
@@ -21,7 +22,7 @@ class MyWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner:false,
-      home:Gardensplash() ,
+      home:Gardensplash () ,
     );
   }
 }

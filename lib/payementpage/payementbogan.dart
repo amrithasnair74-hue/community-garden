@@ -1,20 +1,19 @@
 import 'package:communitygarden/image/image.dart';
-import 'package:communitygarden/screens/aboutpage/aboutrose.dart';
-import 'package:communitygarden/screens/aboutpage/aboutshrub.dart';
+import 'package:communitygarden/screens/aboutpage/aboutboganpage.dart';
 import 'package:flutter/material.dart';
 
-class Payementrose extends StatefulWidget {
-  const Payementrose({super.key});
+class boganpayement extends StatefulWidget {
+  const boganpayement({super.key});
 
   @override
-  State<Payementrose> createState() => _PayementroseState();
+  State<boganpayement> createState() => _boganpayementState();
 }
 
-class _PayementroseState extends State<Payementrose> {
+class _boganpayementState extends State<boganpayement> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(
+       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(16),
           child: Container(
@@ -64,7 +63,7 @@ class _PayementroseState extends State<Payementrose> {
                   ),
                   child: Center(
                     child: Image.asset(
-                      AppImages.roseimage,
+                      AppImages.boganimage,
                       height: 300,
                       width: 300,
                     ),
@@ -79,7 +78,7 @@ class _PayementroseState extends State<Payementrose> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: const [
                       Text(
-                        "Rose",
+                        "Boganvilla",
                         style: TextStyle(
                           fontSize: 20,
                           fontWeight: FontWeight.bold,
@@ -155,7 +154,7 @@ class _PayementroseState extends State<Payementrose> {
                       onPressed: () {
                         Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (_) => const RosePage()),
+                          MaterialPageRoute(builder: (_) => const boganpage()),
                         );
                       },
 
@@ -193,5 +192,6 @@ class InfoTile extends StatelessWidget {
         ),
       ],
     );
+
   }
 }

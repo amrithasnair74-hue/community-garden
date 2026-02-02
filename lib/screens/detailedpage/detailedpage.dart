@@ -1,3 +1,9 @@
+
+import 'package:communitygarden/screens/aboutpage/aboutboganpage.dart';
+import 'package:communitygarden/screens/aboutpage/aboutwater.dart';
+import 'package:flutter/material.dart';
+
+// Ensure these imports match your actual file structure
 import 'package:communitygarden/colour/colour.dart';
 import 'package:communitygarden/image/image.dart';
 import 'package:communitygarden/screens/aboutpage/aboutpinkrose.dart';
@@ -7,86 +13,64 @@ import 'package:communitygarden/screens/homepage/homepage.dart';
 import 'package:communitygarden/screens/notification/notificationpage.dart';
 import 'package:communitygarden/settings/settingspage.dart';
 import 'package:communitygarden/wishpage/wishpage.dart';
-import 'package:flutter/material.dart';
-
-void main() {
-  runApp(const MyApp());
-}
-
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return const MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: DetailPage(),
-    );
-  }
-}
 
 class DetailPage extends StatelessWidget {
   const DetailPage({super.key});
 
   @override
   Widget build(BuildContext context) {
+    // The list of items containing data and the target page
     final List<Map<String, dynamic>> items = [
       {'isHeader': true, 'title': 'EcoBloom'},
-
       {
         'isHeader': false,
         'image': AppImages.shrubimage,
-        'title': 'Create with EcoBloom',
+        'title': 'Shrub Plant',
         'sub': '150 ml',
         'active': true,
         'color': const Color.fromARGB(255, 189, 164, 142),
+        'page': const ShrubPage(), 
       },
       {
         'isHeader': false,
         'image': AppImages.boganimage,
-        'title': 'Create with EcoBloom',
+        'title': 'Bougainvillea',
         'sub': '150 ml',
         'active': true,
         'color': const Color(0xffE9C6AB),
+        'page': const boganpage(), 
       },
       {
         'isHeader': false,
         'image': AppImages.redrose,
-        'title': 'Create with EcoBloom',
+        'title': 'Red Rose',
         'sub': '150 ml',
         'active': false,
         'color': const Color.fromARGB(255, 163, 180, 194),
+        'page': const RosePage(),
       },
       {
         'isHeader': false,
         'image': AppImages.waterimage,
-        'title': 'Create with EcoBloom',
+        'title': 'Water Plant',
         'sub': '150 ml',
         'active': false,
         'color': const Color(0xffEAEAEA),
-      },
-      {
-        'isHeader': false,
-        'image': AppImages.boganimage,
-        'title': 'Create with EcoBloom',
-        'sub': '150 ml',
-        'active': true,
-        'color': const Color.fromARGB(255, 151, 186, 128),
+        'page': const waterplant(), 
       },
       {
         'isHeader': false,
         'image': AppImages.roseimage,
-        'title': 'Create with EcoBloom',
+        'title': 'Pink Rose',
         'sub': '150 ml',
         'active': true,
         'color': const Color(0xffE9C6AB),
+        'page': const Aboutpinkrose(),
       },
     ];
 
     return Scaffold(
       backgroundColor: Colors.white,
-
-      
       appBar: AppBar(
         backgroundColor: Colors.white,
         elevation: 0,
@@ -95,8 +79,8 @@ class DetailPage extends StatelessWidget {
           onPressed: () => Navigator.pop(context),
         ),
       ),
-
       
+      // Re-added your Bottom Navigation Bar logic
       bottomNavigationBar: BottomAppBar(
         shape: const CircularNotchedRectangle(),
         notchMargin: 8,
@@ -107,50 +91,25 @@ class DetailPage extends StatelessWidget {
             children: [
               IconButton(
                 icon: const Icon(Icons.home),
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (_) => const GardenHomePage()),
-                  );
-                },
+                onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (_) => const GardenHomePage())),
               ),
               IconButton(
                 icon: const Icon(Icons.notifications),
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (_) => const PlantStockPage()),
-                  );
-                },
+                onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (_) => const PlantStockPage())),
               ),
               IconButton(
                 icon: const Icon(Icons.settings),
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (_) => const ProfilePage()),
-                  );
-                },
+                onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (_) => const ProfilePage())),
               ),
               IconButton(
                 icon: const Icon(Icons.favorite),
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (_) => const WishlistPage()),
-                  );
-                },
+                onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (_) => const WishlistPage())),
               ),
             ],
           ),
         ),
       ),
 
-      
       body: SafeArea(
         child: ListView.builder(
           padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -158,18 +117,14 @@ class DetailPage extends StatelessWidget {
           itemBuilder: (context, index) {
             final item = items[index];
 
-            
+            // 1. Header UI
             if (item['isHeader'] == true) {
               return Padding(
                 padding: const EdgeInsets.symmetric(vertical: 20),
                 child: RichText(
                   text: const TextSpan(
                     text: "New on ",
-                    style: TextStyle(
-                      fontSize: 26,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.black,
-                    ),
+                    style: TextStyle(fontSize: 26, fontWeight: FontWeight.bold, color: Colors.black),
                     children: [
                       TextSpan(
                         text: "EcoBloom",
@@ -181,31 +136,17 @@ class DetailPage extends StatelessWidget {
               );
             }
 
-          
+            // 2. Card UI with Navigation
             return InkWell(
               borderRadius: BorderRadius.circular(24),
               onTap: () {
-                if (item['image'] == AppImages.shrubimage) {
+                // This triggers the move to the next page
+                if (item['page'] != null) {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(
-                        builder: (_) => const ShrubPage()),
-                  );
-                } else if (item['image'] == AppImages.redrose ||
-                    item['image'] == AppImages.redrose) {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (_) => const RosePage()),
-
+                    MaterialPageRoute(builder: (_) => item['page']),
                   );
                 }
-                else if (item['image'] == AppImages.roseimage ||
-                    item['image'] == AppImages.roseimage) {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (_) => const Aboutpinkrose()),);}
               },
               child: Container(
                 height: 100,
@@ -217,15 +158,12 @@ class DetailPage extends StatelessWidget {
                 child: Row(
                   children: [
                     const SizedBox(width: 20),
-
                     Image.asset(
                       item['image'],
                       height: 65,
                       fit: BoxFit.contain,
                     ),
-
                     const SizedBox(width: 15),
-
                     Expanded(
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -233,28 +171,22 @@ class DetailPage extends StatelessWidget {
                         children: [
                           Text(
                             item['title'],
-                            style: const TextStyle(
-                              fontWeight: FontWeight.w600,
-                              fontSize: 16,
-                            ),
+                            style: const TextStyle(fontWeight: FontWeight.w600, fontSize: 16),
                           ),
                           const SizedBox(height: 6),
                           Row(
                             children: [
-                              const Icon(Icons.water_drop_outlined,
-                                  size: 14, color: Colors.black45),
+                              const Icon(Icons.water_drop_outlined, size: 14, color: Colors.black45),
                               const SizedBox(width: 4),
                               Text(
                                 item['sub'],
-                                style: const TextStyle(
-                                    color: Colors.black45, fontSize: 13),
+                                style: const TextStyle(color: Colors.black45, fontSize: 13),
                               ),
                             ],
                           ),
                         ],
                       ),
                     ),
-
                     Container(
                       margin: const EdgeInsets.only(right: 20),
                       padding: const EdgeInsets.all(10),
@@ -263,12 +195,8 @@ class DetailPage extends StatelessWidget {
                         shape: BoxShape.circle,
                       ),
                       child: Icon(
-                        item['active']
-                            ? Icons.check
-                            : Icons.water_drop_outlined,
-                        color: item['active']
-                            ? Colors.white
-                            : Colors.blue.withOpacity(0.5),
+                        item['active'] ? Icons.check : Icons.water_drop_outlined,
+                        color: item['active'] ? Colors.white : Colors.blue.withOpacity(0.5),
                         size: 20,
                       ),
                     ),

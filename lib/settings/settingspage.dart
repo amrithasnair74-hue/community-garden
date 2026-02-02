@@ -52,15 +52,15 @@ class ProfilePage extends StatelessWidget {
                 ),
               ),
               Positioned(
-                bottom: -40,
+                bottom: 0,
                 left: 0,
                 right: 0,
                 child: Center(
                   child: CircleAvatar(
-                    radius: 45,
+                    radius: 55,
                     backgroundColor: Colors.white,
                     child: CircleAvatar(
-                      radius: 40,
+                      radius: 50,
                       backgroundColor: Color.fromARGB(255, 78, 130, 64),
                       child: Icon(
                         Icons.person,
@@ -77,12 +77,12 @@ class ProfilePage extends StatelessWidget {
           const SizedBox(height: 60),
 
           // Profile details
-          profileTile(Icons.person, "Nandana"),
-          profileTile(Icons.cake, "Birthday"),
-          profileTile(Icons.phone, "9605837575"),
-          profileTile(Icons.camera_alt, "Instagram account"),
-          profileTile(Icons.email, "nanda@aplusdesign.co"),
-          profileTile(Icons.lock, "Password"),
+          profileTile(Icons.person, "Edit profile"),
+          profileTile(Icons.shopping_bag, "My cart"),
+          profileTile(Icons.notification_add, "notification"),
+           profileTile(Icons.lock, "Privacy & Policy"),
+          profileTile(Icons.email, "nanda@aplusdesign.com"),
+        
 
           const SizedBox(height: 20),
 
@@ -109,7 +109,7 @@ class ProfilePage extends StatelessWidget {
                   ),
                   child: const Center(
                     child: Text(
-                      "Edit profile",
+                      "Log Out",
                       style: TextStyle(
                         fontSize: 16,
                         fontWeight: FontWeight.w600,

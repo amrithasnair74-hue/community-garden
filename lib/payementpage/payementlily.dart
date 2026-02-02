@@ -1,20 +1,19 @@
 import 'package:communitygarden/image/image.dart';
-import 'package:communitygarden/screens/aboutpage/aboutrose.dart';
-import 'package:communitygarden/screens/aboutpage/aboutshrub.dart';
+import 'package:communitygarden/screens/aboutpage/aboutwater.dart';
 import 'package:flutter/material.dart';
 
-class Payementrose extends StatefulWidget {
-  const Payementrose({super.key});
+class Payementlily extends StatefulWidget {
+  const Payementlily({super.key});
 
   @override
-  State<Payementrose> createState() => _PayementroseState();
+  State<Payementlily> createState() => _PayementlilyState();
 }
 
-class _PayementroseState extends State<Payementrose> {
+class _PayementlilyState extends State<Payementlily> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(
+       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(16),
           child: Container(
@@ -64,7 +63,7 @@ class _PayementroseState extends State<Payementrose> {
                   ),
                   child: Center(
                     child: Image.asset(
-                      AppImages.roseimage,
+                      AppImages.waterimage,
                       height: 300,
                       width: 300,
                     ),
@@ -79,14 +78,14 @@ class _PayementroseState extends State<Payementrose> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: const [
                       Text(
-                        "Rose",
+                        "Water lily",
                         style: TextStyle(
                           fontSize: 20,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
                       Text(
-                        "3000 Rs",
+                        "5500 Rs",
                         style: TextStyle(
                           fontSize: 20,
                           fontWeight: FontWeight.bold,
@@ -155,7 +154,7 @@ class _PayementroseState extends State<Payementrose> {
                       onPressed: () {
                         Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (_) => const RosePage()),
+                          MaterialPageRoute(builder: (_) => const waterplant()),
                         );
                       },
 
@@ -193,5 +192,6 @@ class InfoTile extends StatelessWidget {
         ),
       ],
     );
+    
   }
 }

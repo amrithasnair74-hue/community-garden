@@ -11,100 +11,133 @@ class Gardenregister extends StatefulWidget {
 }
 
 class _GardenregisterState extends State<Gardenregister> {
+  // 1. Create a GlobalKey to identify the Form
+  final _formKey = GlobalKey<FormState>();
+
+  // 2. Separate controllers for each field
   final TextEditingController usernamecontroller = TextEditingController();
   final TextEditingController passwordcontroller = TextEditingController();
+  final TextEditingController confirmPasswordController = TextEditingController();
 
-  String _username = "";
-  String _password = "";
+  @override
+  void dispose() {
+    // Clean up controllers when the widget is disposed
+    usernamecontroller.dispose();
+    passwordcontroller.dispose();
+    confirmPasswordController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(backgroundColor: Colors.green, title: Text('EcoBloom')),
+      appBar: AppBar(backgroundColor: Colors.green, title: const Text('EcoBloom')),
       backgroundColor: Colors.white,
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(16.0),
-
-          child: Column(
-            children: [
-              Center(
-                child: Text(
-                  'Login',
-                  style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+          // 3. Wrap your Column in a Form widget
+          child: Form(
+            key: _formKey,
+            child: Column(
+              children: [
+                const Center(
+                  child: Text(
+                    'Login',
+                    style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+                  ),
                 ),
-              ),
-              SizedBox(height: 10),
+                const SizedBox(height: 10),
 
-              Image.asset(AppImages.thirdimage, height: 150),
+                Image.asset(AppImages.thirdimage, height: 150),
 
-              SizedBox(height: 20),
-              Customwidgets(
-                hintText: "Name",
-                controller: usernamecontroller,
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return "please enter name";
-                  }
-                  return null;
-                },
-              ),
+                const SizedBox(height: 20),
 
-              SizedBox(height: 10),
-              Customwidgets(
-                hintText: "Password",
-                controller: passwordcontroller,
+                // Name Validation
+                Customwidgets(
+                  hintText: "Name",
+                  controller: usernamecontroller,
+                  validator: (value) {
+                    if (value == null || value.trim().isEmpty) {
+                      return "Please enter your name";
+                    }
+                    return null;
+                  },
+                ),
 
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return "please enter Password";
-                  }
-                  if (!RegExp(
-                    r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,}$',
-                  ).hasMatch(value)) {
-                    return "enter correct password";
-                  }
-                  return null;
-                },
-              ),
+                const SizedBox(height: 10),
 
-              SizedBox(height: 10),
+                // Password Validation
+                Customwidgets(
+                  hintText: "Password",
+                  controller: passwordcontroller,
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return "Please enter Password";
+                    }
+                    // Your Regex for: 1 Upper, 1 Lower, 1 Digit, 1 Special Char, Min 8 chars
+                    if (!RegExp(
+                      r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,}$',
+                    ).hasMatch(value)) {
+                      return "Password must be 8+ chars (Upper, Lower, Number, Special)";
+                    }
+                    return null;
+                  },
+                ),
 
-              Customwidgets(
-                hintText: "Confirm password",
-                controller: passwordcontroller,
-              ),
-              SizedBox(height: 20),
+                const SizedBox(height: 10),
 
-              OutlinedButton(
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const GardenHomePage(),
+                // Confirm Password Validation
+                Customwidgets(
+                  hintText: "Confirm password",
+                  controller: confirmPasswordController,
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return "Please confirm your password";
+                    }
+                    if (value != passwordcontroller.text) {
+                      return "Passwords do not match";
+                    }
+                    return null;
+                  },
+                ),
+                
+                const SizedBox(height: 20),
+
+                OutlinedButton(
+                  onPressed: () {
+                    // 4. Trigger validation logic
+                    if (_formKey.currentState!.validate()) {
+                      // If form is valid, navigate to homepage
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const GardenHomePage(),
+                        ),
+                      );
+                    }
+                  },
+                  style: OutlinedButton.styleFrom(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(15),
                     ),
-                  );
-                },
-                style: OutlinedButton.styleFrom(
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(15), // fixed
+                    side: const BorderSide(color: Colors.green),
                   ),
-                  side: BorderSide(color: Colors.green),
+                  child: const Text('Login'),
                 ),
-                child: Text('login'),
-              ),
 
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  TextButton(
-                    onPressed: () {},
-                    child: Text("forgot password ?"),
-                  ),
-                  TextButton(onPressed: () {}, child: Text("Create Account")),
-                ],
-              ),
-            ],
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    TextButton(
+                      onPressed: () {},
+                      child: const Text("forgot password ?"),
+                    ),
+                    TextButton(onPressed: () {}, child: const Text("Create Account")),
+                  ],
+                ),
+              ],
+            ),
           ),
         ),
       ),

@@ -66,8 +66,28 @@ flutter:
       - assets/shrubs.jpg
       - assets/water.jpg
       - assets/red.jpg
-      
+      - assets/jasmin.jpg
+      - assets/moneyplant.jpg
+      - assets/hibiscus.jpg
+      - assets/orange.jpg
       - assets/anthurium.jpg
+      - assets/glass-greenhouse.jpg
+      - assets/arali.jpg
+      - assets/malliyila.jpg
+      - assets/sunflower.jpg
+      - assets/lavender.jpg
+      - assets/rosemerry.jpg
+      - assets/white.jpg
+      - assets/thulip.jpg
+      - assets/kattarvazha.jpg
+      - assets/whity.jpg
+      - assets/corriander.jpg
+      - assets/grimp.jpg
+      - assets/thulsi.jpg
+      - assets/line leafy.jpg
+      - assets/leaves.jpg
+      - assets/mohra.jpg
+      - assets/rosy.jpg
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
