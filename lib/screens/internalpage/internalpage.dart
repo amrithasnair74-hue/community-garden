@@ -45,23 +45,23 @@ class _InternalpageState extends State<Internalpage> {
               children: const [
                 ListTile(
                 
-                  title: Text("Water the plants"),
-                  subtitle: Text("150 ml of water"),
+                  title: Text("special offer for you"),
+                  subtitle: Text("25% off"),
                 ),
                 ListTile(
                   leading: Icon(Icons.eco),
-                  title: Text("Add fertilizer"),
-                  subtitle: Text("Once a week"),
+                  title: Text("special offer for you"),
+                  subtitle: Text("10% discount"),
                 ),
                 ListTile(
                   leading: Icon(Icons.eco),
-                  title: Text("Sunlight"),
-                  subtitle: Text("6 hours daily"),
+                  title: Text("exclusive offer"),
+                  subtitle: Text("100rs reduction from actual price"),
                 ),
                 ListTile(
                   leading: Icon(Icons.eco),
-                  title: Text("Pruning"),
-                  subtitle: Text("Remove dry leaves"),
+                  title: Text("only for you"),
+                  subtitle: Text("50% off"),
                 ),
               ],
             ),

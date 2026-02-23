@@ -1,73 +1,158 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-class WishlistPage extends StatelessWidget {
+class WishlistPage extends StatefulWidget {
   const WishlistPage({super.key});
+
+  @override
+  State<WishlistPage> createState() => _WishlistPageState();
+}
+
+class _WishlistPageState extends State<WishlistPage> {
+  List<String> wishlistStrings = [];
+
+  @override
+  void initState() {
+    super.initState();
+    loadWishlist(); // പേജ് തുറക്കുമ്പോൾ ഡാറ്റ ലോഡ് ചെയ്യുക
+  }
+
+  // SharedPreferences-ൽ നിന്ന് ഡാറ്റ എടുക്കുന്നു
+  Future<void> loadWishlist() async {
+    final prefs = await SharedPreferences.getInstance();
+    setState(() {
+      wishlistStrings = prefs.getStringList('wishlist_data') ?? [];
+    });
+  }
+
+  // ഐറ്റം ഡിലീറ്റ് ചെയ്യാനും സ്റ്റോറേജ് അപ്ഡേറ്റ് ചെയ്യാനും
+  Future<void> removeItem(int index) async {
+    final prefs = await SharedPreferences.getInstance();
+    setState(() {
+      wishlistStrings.removeAt(index);
+    });
+    await prefs.setStringList('wishlist_data', wishlistStrings);
+  }
+
+  // ടോട്ടൽ തുക കണക്കാക്കുന്നു
+  int getTotalAmount() {
+    int total = 0;
+    for (var item in wishlistStrings) {
+      var parts = item.split('|'); // Name|Image|Price
+      if (parts.length >= 3) {
+        // ₹ ചിഹ്നം മാറ്റി നമ്പറാക്കുന്നു
+        String priceString = parts[2].replaceAll('₹', '').trim();
+        total += int.tryParse(priceString) ?? 0;
+      }
+    }
+    return total;
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: const Color.fromARGB(255, 161, 197, 165),
-        elevation: 0,
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back, color: Colors.black),
-          onPressed: () => Navigator.pop(context),
-        ),
-        title: const Text(
-          "My Cart",
-          style: TextStyle(color: Colors.black, fontWeight: FontWeight.w600),
-        ),
-        centerTitle: true,
+        title: const Text("My Cart"), // Wishlist എന്നതിന് പകരം Cart എന്ന് നൽകാം
+        backgroundColor: Colors.green,
       ),
-      body: Container(
-        width: double.infinity,
-        height: double.infinity,
-        decoration: const BoxDecoration(
-          gradient: LinearGradient(
-            colors: [
-              Color.fromARGB(255, 164, 203, 157),
-              Color.fromARGB(255, 49, 145, 13),
-            ],
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-          ),
+      body: wishlistStrings.isEmpty
+          ? const Center(
+              child: Text(
+                "Your cart is empty!",
+                style: TextStyle(fontSize: 18),
+              ),
+            )
+          : ListView.builder(
+              padding: const EdgeInsets.all(10),
+              itemCount: wishlistStrings.length,
+              itemBuilder: (context, index) {
+                // ഡാറ്റ വേർതിരിക്കുന്നു (Name, Image, Price)
+                var parts = wishlistStrings[index].split('|');
+                String name = parts[0];
+                String image = parts[1];
+                String price = parts[2];
+
+                return Card(
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(15),
+                  ),
+                  elevation: 3,
+                  margin: const EdgeInsets.symmetric(vertical: 8),
+                  child: ListTile(
+                    leading: ClipRRect(
+                      borderRadius: BorderRadius.circular(10),
+                      child: Image.asset(
+                        image,
+                        width: 60,
+                        height: 60,
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                    title: Text(
+                      name,
+                      style: const TextStyle(fontWeight: FontWeight.bold),
+                    ),
+                    subtitle: Text(
+                      price,
+                      style: const TextStyle(
+                        color: Colors.green,
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                    trailing: IconButton(
+                      icon: const Icon(Icons.delete, color: Colors.red),
+                      onPressed: () => removeItem(index),
+                    ),
+                  ),
+                );
+              },
+            ),
+
+      // Bottom Section with Total and Checkout Button
+      bottomNavigationBar: Container(
+        padding: const EdgeInsets.all(16),
+        decoration: BoxDecoration(
+          color: Colors.white,
+          boxShadow: [BoxShadow(color: Colors.grey.shade300, blurRadius: 5)],
         ),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisSize: MainAxisSize.min,
           children: [
-            const Icon(Icons.favorite_border, size: 80, color: Colors.white),
-            const SizedBox(height: 20),
-            const Text(
-              "No Favorites Yet",
-              style: TextStyle(
-                fontSize: 20,
-                fontWeight: FontWeight.bold,
-                color: Colors.black,
-              ),
-            ),
-            const SizedBox(height: 8),
-            const Text(
-              "Tap the heart icon to save products",
-              style: TextStyle(fontSize: 14, color: Colors.black54),
-            ),
-            const SizedBox(height: 30),
-            ElevatedButton(
-              onPressed: () {},
-              style: ElevatedButton.styleFrom(
-                backgroundColor: const Color.fromARGB(255, 174, 196, 151),
-                foregroundColor: Colors.black,
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 30,
-                  vertical: 14,
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                const Text(
+                  "Total Amount",
+                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                 ),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(20),
+                Text(
+                  "₹${getTotalAmount()}",
+                  style: const TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.green,
+                  ),
                 ),
-                elevation: 0,
-              ),
-              child: const Text(
-                "Products List",
-                style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
+              ],
+            ),
+            const SizedBox(height: 15),
+            SizedBox(
+              width: double.infinity,
+              height: 50,
+              child: ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.green,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                ),
+                onPressed: () {
+                  // ഇവിടെ പർച്ചേസ് ചെയ്യാനുള്ള ലോജിക് നൽകാം
+                },
+                child: const Text(
+                  "Checkout Now",
+                  style: TextStyle(fontSize: 18, color: Colors.white),
+                ),
               ),
             ),
           ],

@@ -1,5 +1,4 @@
 import 'package:communitygarden/image/image.dart';
-import 'package:communitygarden/screens/aboutpage/aboutrose.dart';
 import 'package:communitygarden/screens/aboutpage/aboutshrub.dart';
 import 'package:flutter/material.dart';
 

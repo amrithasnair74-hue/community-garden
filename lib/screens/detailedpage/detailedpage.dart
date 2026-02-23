@@ -1,25 +1,16 @@
-
 import 'package:communitygarden/screens/aboutpage/aboutboganpage.dart';
 import 'package:communitygarden/screens/aboutpage/aboutwater.dart';
-import 'package:flutter/material.dart';
-
-// Ensure these imports match your actual file structure
-import 'package:communitygarden/colour/colour.dart';
+import 'package:flutter/material.dart'; 
 import 'package:communitygarden/image/image.dart';
 import 'package:communitygarden/screens/aboutpage/aboutpinkrose.dart';
 import 'package:communitygarden/screens/aboutpage/aboutrose.dart';
 import 'package:communitygarden/screens/aboutpage/aboutshrub.dart';
-import 'package:communitygarden/screens/homepage/homepage.dart';
-import 'package:communitygarden/screens/notification/notificationpage.dart';
-import 'package:communitygarden/settings/settingspage.dart';
-import 'package:communitygarden/wishpage/wishpage.dart';
 
 class DetailPage extends StatelessWidget {
   const DetailPage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    // The list of items containing data and the target page
     final List<Map<String, dynamic>> items = [
       {'isHeader': true, 'title': 'EcoBloom'},
       {
@@ -29,7 +20,7 @@ class DetailPage extends StatelessWidget {
         'sub': '150 ml',
         'active': true,
         'color': const Color.fromARGB(255, 189, 164, 142),
-        'page': const ShrubPage(), 
+        'page': const ShrubPage(),
       },
       {
         'isHeader': false,
@@ -38,7 +29,7 @@ class DetailPage extends StatelessWidget {
         'sub': '150 ml',
         'active': true,
         'color': const Color(0xffE9C6AB),
-        'page': const boganpage(), 
+        'page': const boganpage(),
       },
       {
         'isHeader': false,
@@ -56,7 +47,7 @@ class DetailPage extends StatelessWidget {
         'sub': '150 ml',
         'active': false,
         'color': const Color(0xffEAEAEA),
-        'page': const waterplant(), 
+        'page': const waterplant(),
       },
       {
         'isHeader': false,
@@ -79,36 +70,8 @@ class DetailPage extends StatelessWidget {
           onPressed: () => Navigator.pop(context),
         ),
       ),
-      
-      // Re-added your Bottom Navigation Bar logic
-      bottomNavigationBar: BottomAppBar(
-        shape: const CircularNotchedRectangle(),
-        notchMargin: 8,
-        child: SizedBox(
-          height: 60,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              IconButton(
-                icon: const Icon(Icons.home),
-                onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (_) => const GardenHomePage())),
-              ),
-              IconButton(
-                icon: const Icon(Icons.notifications),
-                onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (_) => const PlantStockPage())),
-              ),
-              IconButton(
-                icon: const Icon(Icons.settings),
-                onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (_) => const ProfilePage())),
-              ),
-              IconButton(
-                icon: const Icon(Icons.favorite),
-                onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (_) => const WishlistPage())),
-              ),
-            ],
-          ),
-        ),
-      ),
+
+     
 
       body: SafeArea(
         child: ListView.builder(
@@ -124,7 +87,11 @@ class DetailPage extends StatelessWidget {
                 child: RichText(
                   text: const TextSpan(
                     text: "New on ",
-                    style: TextStyle(fontSize: 26, fontWeight: FontWeight.bold, color: Colors.black),
+                    style: TextStyle(
+                      fontSize: 26,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.black,
+                    ),
                     children: [
                       TextSpan(
                         text: "EcoBloom",
@@ -136,11 +103,9 @@ class DetailPage extends StatelessWidget {
               );
             }
 
-            // 2. Card UI with Navigation
             return InkWell(
               borderRadius: BorderRadius.circular(24),
               onTap: () {
-                // This triggers the move to the next page
                 if (item['page'] != null) {
                   Navigator.push(
                     context,
@@ -158,11 +123,7 @@ class DetailPage extends StatelessWidget {
                 child: Row(
                   children: [
                     const SizedBox(width: 20),
-                    Image.asset(
-                      item['image'],
-                      height: 65,
-                      fit: BoxFit.contain,
-                    ),
+                    Image.asset(item['image'], height: 65, fit: BoxFit.contain),
                     const SizedBox(width: 15),
                     Expanded(
                       child: Column(
@@ -171,16 +132,26 @@ class DetailPage extends StatelessWidget {
                         children: [
                           Text(
                             item['title'],
-                            style: const TextStyle(fontWeight: FontWeight.w600, fontSize: 16),
+                            style: const TextStyle(
+                              fontWeight: FontWeight.w600,
+                              fontSize: 16,
+                            ),
                           ),
                           const SizedBox(height: 6),
                           Row(
                             children: [
-                              const Icon(Icons.water_drop_outlined, size: 14, color: Colors.black45),
+                              const Icon(
+                                Icons.water_drop_outlined,
+                                size: 14,
+                                color: Colors.black45,
+                              ),
                               const SizedBox(width: 4),
                               Text(
                                 item['sub'],
-                                style: const TextStyle(color: Colors.black45, fontSize: 13),
+                                style: const TextStyle(
+                                  color: Colors.black45,
+                                  fontSize: 13,
+                                ),
                               ),
                             ],
                           ),
@@ -195,8 +166,12 @@ class DetailPage extends StatelessWidget {
                         shape: BoxShape.circle,
                       ),
                       child: Icon(
-                        item['active'] ? Icons.check : Icons.water_drop_outlined,
-                        color: item['active'] ? Colors.white : Colors.blue.withOpacity(0.5),
+                        item['active']
+                            ? Icons.check
+                            : Icons.water_drop_outlined,
+                        color: item['active']
+                            ? Colors.white
+                            : Colors.blue.withOpacity(0.5),
                         size: 20,
                       ),
                     ),

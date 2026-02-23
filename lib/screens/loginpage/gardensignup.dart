@@ -1,6 +1,8 @@
+import 'package:communitygarden/bottomnavigation.dart';
 import 'package:communitygarden/customwidgets/textformfield.dart';
 import 'package:communitygarden/image/image.dart';
 import 'package:communitygarden/screens/homepage/homepage.dart';
+import 'package:communitygarden/screens/payementpage.dart';
 import 'package:flutter/material.dart';
 
 class Gardensignup extends StatefulWidget {
@@ -11,7 +13,6 @@ class Gardensignup extends StatefulWidget {
 }
 
 class _GardensignupState extends State<Gardensignup> {
-  // 1. Create the Form Key
   final _formKey = GlobalKey<FormState>();
 
   final TextEditingController namecontroller = TextEditingController();
@@ -19,9 +20,9 @@ class _GardensignupState extends State<Gardensignup> {
   final TextEditingController emailcontroller = TextEditingController();
   final TextEditingController phonecontroller = TextEditingController();
   final TextEditingController addresscontroller = TextEditingController();
-  final TextEditingController confirmpasswordcontroller = TextEditingController();
+  final TextEditingController confirmpasswordcontroller =
+      TextEditingController();
 
-  // Dispose controllers to save memory
   @override
   void dispose() {
     namecontroller.dispose();
@@ -36,12 +37,15 @@ class _GardensignupState extends State<Gardensignup> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(backgroundColor: Colors.green, title: const Text('EcoBloom')),
+      appBar: AppBar(
+        backgroundColor: Colors.green,
+        title: const Text('EcoBloom'),
+      ),
       backgroundColor: Colors.white,
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(16.0),
-          // 2. Wrap the Column in a Form
+
           child: Form(
             key: _formKey,
             child: Column(
@@ -56,24 +60,26 @@ class _GardensignupState extends State<Gardensignup> {
                 Image.asset(AppImages.secondimage, height: 150),
                 const SizedBox(height: 20),
 
-                // Name Validation
                 Customwidgets(
-                  hintText: "Name", 
+                  hintText: "Name",
                   controller: namecontroller,
                   validator: (value) {
-                    if (value == null || value.isEmpty) return "Please enter your name";
+                    if (value == null || value.isEmpty)
+                      return "Please enter your name";
                     return null;
                   },
                 ),
                 const SizedBox(height: 20),
 
-                // Email Validation
                 Customwidgets(
-                  hintText: "Email", 
+                  hintText: "Email",
                   controller: emailcontroller,
                   validator: (value) {
-                    if (value == null || value.isEmpty) return "Please enter email";
-                    if (!RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$').hasMatch(value)) {
+                    if (value == null || value.isEmpty)
+                      return "Please enter email";
+                    if (!RegExp(
+                      r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$',
+                    ).hasMatch(value)) {
                       return "Enter a valid email address";
                     }
                     return null;
@@ -81,52 +87,56 @@ class _GardensignupState extends State<Gardensignup> {
                 ),
                 const SizedBox(height: 20),
 
-                // Phone Validation
                 Customwidgets(
-                  hintText: "Phone", 
+                  hintText: "Phone",
                   controller: phonecontroller,
                   validator: (value) {
-                    if (value == null || value.isEmpty) return "Please enter phone number";
-                    if (value.length < 10) return "Enter a valid 10-digit number";
+                    if (value == null || value.isEmpty)
+                      return "Please enter phone number";
+                    if (value.length < 10)
+                      return "Enter a valid 10-digit number";
                     return null;
                   },
                 ),
                 const SizedBox(height: 10),
 
-                // Address Validation
                 Customwidgets(
-                  hintText: "Address", 
+                  hintText: "Address",
                   controller: addresscontroller,
                   validator: (value) {
-                    if (value == null || value.isEmpty) return "Please enter address";
+                    if (value == null || value.isEmpty)
+                      return "Please enter address";
                     return null;
                   },
                 ),
                 const SizedBox(height: 10),
 
-                // Password Validation
                 Customwork(
                   hintText: "Password",
                   controller: passwordcontroller,
                   icon: Icons.visibility_off_outlined,
                   validator: (value) {
-                    if (value == null || value.isEmpty) return "Please enter password";
-                    if (!RegExp(r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,}$').hasMatch(value)) {
-                      return "Password must include Upper, Lower, Number & Special char";
+                    if (value == null || value.isEmpty)
+                      return "Please enter password";
+                    if (!RegExp(
+                      r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,}$',
+                    ).hasMatch(value)) {
+                      return "Password must include 8 char Upper, Lower, Number & Special char";
                     }
                     return null;
                   },
                 ),
                 const SizedBox(height: 20),
 
-                // Confirm Password Validation
                 Customwork(
                   hintText: "Confirmpassword",
                   controller: confirmpasswordcontroller,
                   icon: Icons.visibility_off_outlined,
                   validator: (value) {
-                    if (value == null || value.isEmpty) return "Confirm your password";
-                    if (value != passwordcontroller.text) return "Passwords do not match";
+                    if (value == null || value.isEmpty)
+                      return "Confirm your password";
+                    if (value != passwordcontroller.text)
+                      return "Passwords do not match";
                     return null;
                   },
                 ),
@@ -134,13 +144,11 @@ class _GardensignupState extends State<Gardensignup> {
 
                 OutlinedButton(
                   onPressed: () {
-                    // 3. Trigger all validations
                     if (_formKey.currentState!.validate()) {
-                      // Logic if all fields are correct
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => const GardenHomePage(),
+                          builder: (context) => const HomePage(),
                         ),
                       );
                     }

@@ -1,6 +1,6 @@
+import 'package:communitygarden/gardenanimation.dart';
 import 'package:communitygarden/colour/colour.dart';
 import 'package:communitygarden/image/image.dart';
-import 'package:communitygarden/screens/registrationpage/gardenfirst.dart';
 import 'package:flutter/material.dart';
 
 class Gardensplash extends StatefulWidget {
@@ -11,16 +11,17 @@ class Gardensplash extends StatefulWidget {
 }
 
 class _GardensplashState extends State<Gardensplash> {
+  @override
   void initState() {
     navigateHome();
     super.initState();
   }
 
   navigateHome() async {
-    await Future.delayed(Duration(seconds: 5));
+    await Future.delayed(Duration(seconds: 2));
     Navigator.pushReplacement(
       context,
-      MaterialPageRoute(builder: (context) => Gardenfirst()),
+      MaterialPageRoute(builder: (context) => GardenLeafFallAnimation()),
     );
   }
 

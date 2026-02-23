@@ -1,6 +1,5 @@
 import 'package:communitygarden/image/image.dart';
 import 'package:communitygarden/payementpage/payementbogan.dart';
-import 'package:communitygarden/screens/payementpage.dart';
 import 'package:flutter/material.dart';
 
 class boganpage extends StatefulWidget {

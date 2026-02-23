@@ -1,6 +1,5 @@
 import 'package:communitygarden/image/image.dart';
 import 'package:communitygarden/screens/aboutpage/aboutrose.dart';
-import 'package:communitygarden/screens/aboutpage/aboutshrub.dart';
 import 'package:flutter/material.dart';
 
 class Payementrose extends StatefulWidget {
@@ -155,7 +154,7 @@ class _PayementroseState extends State<Payementrose> {
                       onPressed: () {
                         Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (_) => const RosePage()),
+                          MaterialPageRoute(builder: (_) => const Payementrose()),
                         );
                       },
 

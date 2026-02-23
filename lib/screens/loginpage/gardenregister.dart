@@ -1,6 +1,9 @@
+import 'package:communitygarden/bottomnavigation.dart';
 import 'package:communitygarden/customwidgets/textformfield.dart';
 import 'package:communitygarden/image/image.dart';
 import 'package:communitygarden/screens/homepage/homepage.dart';
+import 'package:communitygarden/screens/loginpage/gardenforgotpassword.dart';
+import 'package:communitygarden/screens/loginpage/gardensignup.dart';
 import 'package:flutter/material.dart';
 
 class Gardenregister extends StatefulWidget {
@@ -11,17 +14,15 @@ class Gardenregister extends StatefulWidget {
 }
 
 class _GardenregisterState extends State<Gardenregister> {
-  // 1. Create a GlobalKey to identify the Form
   final _formKey = GlobalKey<FormState>();
 
-  // 2. Separate controllers for each field
   final TextEditingController usernamecontroller = TextEditingController();
   final TextEditingController passwordcontroller = TextEditingController();
-  final TextEditingController confirmPasswordController = TextEditingController();
+  final TextEditingController confirmPasswordController =
+      TextEditingController();
 
   @override
   void dispose() {
-    // Clean up controllers when the widget is disposed
     usernamecontroller.dispose();
     passwordcontroller.dispose();
     confirmPasswordController.dispose();
@@ -31,12 +32,14 @@ class _GardenregisterState extends State<Gardenregister> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(backgroundColor: Colors.green, title: const Text('EcoBloom')),
+      appBar: AppBar(
+        backgroundColor: Colors.green,
+        title: const Text('EcoBloom'),
+      ),
       backgroundColor: Colors.white,
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(16.0),
-          // 3. Wrap your Column in a Form widget
           child: Form(
             key: _formKey,
             child: Column(
@@ -53,7 +56,6 @@ class _GardenregisterState extends State<Gardenregister> {
 
                 const SizedBox(height: 20),
 
-                // Name Validation
                 Customwidgets(
                   hintText: "Name",
                   controller: usernamecontroller,
@@ -67,7 +69,6 @@ class _GardenregisterState extends State<Gardenregister> {
 
                 const SizedBox(height: 10),
 
-                // Password Validation
                 Customwidgets(
                   hintText: "Password",
                   controller: passwordcontroller,
@@ -75,7 +76,6 @@ class _GardenregisterState extends State<Gardenregister> {
                     if (value == null || value.isEmpty) {
                       return "Please enter Password";
                     }
-                    // Your Regex for: 1 Upper, 1 Lower, 1 Digit, 1 Special Char, Min 8 chars
                     if (!RegExp(
                       r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,}$',
                     ).hasMatch(value)) {
@@ -87,7 +87,6 @@ class _GardenregisterState extends State<Gardenregister> {
 
                 const SizedBox(height: 10),
 
-                // Confirm Password Validation
                 Customwidgets(
                   hintText: "Confirm password",
                   controller: confirmPasswordController,
@@ -101,18 +100,16 @@ class _GardenregisterState extends State<Gardenregister> {
                     return null;
                   },
                 ),
-                
+
                 const SizedBox(height: 20),
 
                 OutlinedButton(
                   onPressed: () {
-                    // 4. Trigger validation logic
                     if (_formKey.currentState!.validate()) {
-                      // If form is valid, navigate to homepage
-                      Navigator.push(
+                      Navigator.pushReplacement(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => const GardenHomePage(),
+                          builder: (context) => const Bottomnavigation(),
                         ),
                       );
                     }
@@ -126,14 +123,34 @@ class _GardenregisterState extends State<Gardenregister> {
                   child: const Text('Login'),
                 ),
 
+                const SizedBox(height: 10),
+
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     TextButton(
-                      onPressed: () {},
-                      child: const Text("forgot password ?"),
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const GardenForgotPassword(),
+                          ),
+                        );
+                      },
+                      child: const Text("Forgot Password?"),
                     ),
-                    TextButton(onPressed: () {}, child: const Text("Create Account")),
+
+                    TextButton(
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const Gardensignup(),
+                          ),
+                        );
+                      },
+                      child: const Text("Create Account"),
+                    ),
                   ],
                 ),
               ],
